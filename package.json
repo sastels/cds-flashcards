@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "grommet": "^2.7.9",
+    "grommet-icons": "^4.3.0",
+    "js-yaml": "^3.13.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "styled-components": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
