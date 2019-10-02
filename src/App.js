@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Heading, Grommet } from "grommet";
+import { Box, Button, Heading, Grommet, Text } from "grommet";
 import { Next } from "grommet-icons";
 import yaml from "js-yaml";
 
@@ -55,7 +55,9 @@ const App = () => {
 
   useEffect(() => {
     try {
-      fetch("team.yml")
+      const teamUrl =
+        "https://raw.githubusercontent.com/cds-snc/digital-canada-ca/master/data/team.yml";
+      fetch(teamUrl)
         .then(raw => {
           return raw.text();
         })
@@ -63,7 +65,6 @@ const App = () => {
           return yaml.safeLoad(text);
         })
         .then(data => {
-          console.log(data);
           setTeamData(shuffle(data.exec.concat(data.team)));
         });
     } catch (e) {
@@ -77,7 +78,7 @@ const App = () => {
     <Grommet theme={theme} full>
       <Box fill>
         <AppBar>
-          <Heading level="3" margin="none">
+          <Heading level="1" size="small" margin="none">
             CDS Team
           </Heading>
           <Button label="Reveal" onClick={() => setShowSidebar(!showSidebar)} />
@@ -86,6 +87,7 @@ const App = () => {
             icon={<Next />}
             reverse
             onClick={() => {
+              setShowSidebar(false);
               if (teamData && teamDataIndex < teamData.length - 1) {
                 setTeamDataIndex(teamDataIndex + 1);
               } else {
@@ -113,14 +115,13 @@ const App = () => {
           >
             {showSidebar && person && (
               <React.Fragment>
-                <div>{person.name}</div>
-                <div>{person.title.en}</div>
+                <Text size="xlarge">{person.name}</Text>
+                <Text size="large">{person.title.en}</Text>
               </React.Fragment>
             )}
           </Box>
         </Box>
       </Box>
-      )}
     </Grommet>
   );
 };
