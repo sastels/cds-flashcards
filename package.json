@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "lingui compile && react-scripts start",
-    "build": "react-scripts build",
+    "build": "lingui compile && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "add-locale": "lingui add-locale",
