@@ -1,0 +1,46 @@
+{
+  "CDS": {
+    "origin": [
+      [
+        "src/App.js",
+        90
+      ]
+    ]
+  },
+  "Reveal": {
+    "origin": [
+      [
+        "src/App.js",
+        93
+      ]
+    ]
+  },
+  "Next": {
+    "origin": [
+      [
+        "src/App.js",
+        97
+      ]
+    ]
+  },
+  "other-lang": {
+    "origin": [
+      [
+        "src/App.js",
+        111
+      ],
+      [
+        "src/App.js",
+        113
+      ]
+    ]
+  },
+  "lang": {
+    "origin": [
+      [
+        "src/App.js",
+        138
+      ]
+    ]
+  }
+}

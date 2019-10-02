@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Box, Button, Heading, Grommet, Text } from "grommet";
 import { Next } from "grommet-icons";
 import yaml from "js-yaml";
+import { Trans } from "@lingui/macro";
+import { I18nProvider, I18n } from "@lingui/react";
+import catalogEn from "./locales/en/messages.js";
+import catalogFr from "./locales/fr/messages.js";
 
 const theme = {
   global: {
@@ -52,6 +56,7 @@ const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [teamData, setTeamData] = useState(undefined);
   const [teamDataIndex, setTeamDataIndex] = useState(0);
+  const [lang, setLang] = useState("en");
 
   useEffect(() => {
     try {
@@ -75,54 +80,76 @@ const App = () => {
   const person = teamData ? teamData[teamDataIndex] : undefined;
 
   return (
-    <Grommet theme={theme} full>
-      <Box fill>
-        <AppBar>
-          <Heading level="1" size="small" margin="none">
-            CDS Team
-          </Heading>
-          <Button label="Reveal" onClick={() => setShowSidebar(!showSidebar)} />
-          <Button
-            label="Next"
-            icon={<Next />}
-            reverse
-            onClick={() => {
-              setShowSidebar(false);
-              if (teamData && teamDataIndex < teamData.length - 1) {
-                setTeamDataIndex(teamDataIndex + 1);
-              } else {
-                setTeamDataIndex(0);
-              }
-            }}
-          />
-        </AppBar>
+    <I18nProvider language={lang} catalogs={{ en: catalogEn, fr: catalogFr }}>
+      <I18n>
+        {({ i18n }) => (
+          <Grommet theme={theme} full>
+            <Box fill>
+              <AppBar>
+                <Heading level="1" size="small" margin="none">
+                  <Trans>CDS</Trans>
+                </Heading>
+                <Button
+                  label={i18n._("Reveal")}
+                  onClick={() => setShowSidebar(!showSidebar)}
+                />
+                <Button
+                  label={i18n._("Next")}
+                  icon={<Next />}
+                  reverse
+                  onClick={() => {
+                    setShowSidebar(false);
+                    if (teamData && teamDataIndex < teamData.length - 1) {
+                      setTeamDataIndex(teamDataIndex + 1);
+                    } else {
+                      setTeamDataIndex(0);
+                    }
+                  }}
+                />
 
-        <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
-          <Box flex align="center" justify="center">
-            {person && (
-              <img
-                src={`https://digital.canada.ca${person["image-name"]}`}
-                alt={person.name}
-              />
-            )}
-          </Box>
-          <Box
-            height="20%"
-            background="light-2"
-            elevation="small"
-            align="center"
-            justify="center"
-          >
-            {showSidebar && person && (
-              <React.Fragment>
-                <Text size="xlarge">{person.name}</Text>
-                <Text size="large">{person.title.en}</Text>
-              </React.Fragment>
-            )}
-          </Box>
-        </Box>
-      </Box>
-    </Grommet>
+                <Button
+                  margin={{ right: "small" }}
+                  plain
+                  label={i18n._("other-lang")}
+                  onClick={() => {
+                    setLang(i18n._("other-lang"));
+                  }}
+                />
+              </AppBar>
+
+              <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
+                <Box flex align="center" justify="center">
+                  {person && (
+                    <img
+                      src={`https://digital.canada.ca${person["image-name"]}`}
+                      alt={person.name}
+                    />
+                  )}
+                </Box>
+                <Box
+                  height="20%"
+                  background="light-2"
+                  elevation="small"
+                  align="center"
+                  justify="center"
+                >
+                  {showSidebar && person && (
+                    <React.Fragment>
+                      <Text size="xlarge">{person.name}</Text>
+                      <Text size="large">
+                        {i18n._("lang") === "fr"
+                          ? person.title.fr
+                          : person.title.en}
+                      </Text>
+                    </React.Fragment>
+                  )}
+                </Box>
+              </Box>
+            </Box>
+          </Grommet>
+        )}
+      </I18n>
+    </I18nProvider>
   );
 };
 
