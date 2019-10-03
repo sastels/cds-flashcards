@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@lingui/react": "^2.8.3",
+    "@lingui/macro": "^2.8.3",
     "grommet": "^2.7.9",
     "grommet-icons": "^4.3.0",
     "js-yaml": "^3.13.1",
@@ -13,8 +14,8 @@
     "styled-components": "^4.4.0"
   },
   "scripts": {
-    "start": "lingui compile && react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "build": "lingui compile && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "add-locale": "lingui add-locale",
@@ -39,7 +40,6 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@lingui/cli": "^2.8.3",
-    "@lingui/macro": "^2.8.3",
     "babel-core": "^7.0.0-bridge.0"
   }
 }
