@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, Heading, Grommet, Text } from "grommet";
-import { Next } from "grommet-icons";
 import yaml from "js-yaml";
 import { Trans } from "@lingui/macro";
 import { I18nProvider, I18n } from "@lingui/react";
@@ -24,7 +23,7 @@ const AppBar = props => (
     align="center"
     justify="between"
     background="brand"
-    pad={{ left: "medium", right: "small", vertical: "small" }}
+    pad={{ left: "medium", right: "medium", vertical: "small" }}
     elevation="medium"
     style={{ zIndex: "1" }}
     {...props}
@@ -48,7 +47,6 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
-
   return array;
 }
 
@@ -86,35 +84,40 @@ const App = () => {
           <Grommet theme={theme} full>
             <Box fill>
               <AppBar>
-                <Heading level="1" size="small" margin="none">
-                  <Trans>CDS</Trans>
-                </Heading>
-                <Button
-                  label={i18n._("Reveal")}
-                  onClick={() => setShowSidebar(!showSidebar)}
-                />
-                <Button
-                  label={i18n._("Next")}
-                  icon={<Next />}
-                  reverse
-                  onClick={() => {
-                    setShowSidebar(false);
-                    if (teamData && teamDataIndex < teamData.length - 1) {
-                      setTeamDataIndex(teamDataIndex + 1);
-                    } else {
-                      setTeamDataIndex(0);
-                    }
-                  }}
-                />
+                <Box width="10%" border>
+                  <Heading level="1" size="small" margin="none">
+                    <Trans>CDS</Trans>
+                  </Heading>
+                </Box>
 
-                <Button
-                  margin={{ right: "small" }}
-                  plain
-                  label={i18n._("other-lang")}
-                  onClick={() => {
-                    setLang(i18n._("other-lang"));
-                  }}
-                />
+                <Box direction="row" width="60%" justify="between" border>
+                  <Button
+                    label={i18n._("Reveal")}
+                    onClick={() => setShowSidebar(!showSidebar)}
+                  />
+                  <Button
+                    label={i18n._("Next")}
+                    reverse
+                    onClick={() => {
+                      setShowSidebar(false);
+                      if (teamData && teamDataIndex < teamData.length - 1) {
+                        setTeamDataIndex(teamDataIndex + 1);
+                      } else {
+                        setTeamDataIndex(0);
+                      }
+                    }}
+                  />
+                </Box>
+
+                <Box width="10%" direction="row" justify="end" border>
+                  <Button
+                    plain
+                    label={i18n._("other-lang")}
+                    onClick={() => {
+                      setLang(i18n._("other-lang"));
+                    }}
+                  />
+                </Box>
               </AppBar>
 
               <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
