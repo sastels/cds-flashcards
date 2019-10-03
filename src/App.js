@@ -84,13 +84,13 @@ const App = () => {
           <Grommet theme={theme} full>
             <Box fill>
               <AppBar>
-                <Box width="10%" border>
+                <Box width="10%">
                   <Heading level="1" size="small" margin="none">
                     <Trans>CDS</Trans>
                   </Heading>
                 </Box>
 
-                <Box direction="row" width="60%" justify="between" border>
+                <Box direction="row" width="60%" justify="between">
                   <Button
                     label={i18n._("Reveal")}
                     onClick={() => setShowSidebar(!showSidebar)}
@@ -109,7 +109,7 @@ const App = () => {
                   />
                 </Box>
 
-                <Box width="10%" direction="row" justify="end" border>
+                <Box width="10%" direction="row" justify="end">
                   <Button
                     plain
                     label={i18n._("other-lang")}
