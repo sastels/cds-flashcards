@@ -16,7 +16,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Test
-        run: npm test
+        run: CI=true npm test
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
