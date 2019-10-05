@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Heading, Grommet, Text } from "grommet";
+import { Box, Button, Grommet, Heading, Image, Text } from "grommet";
 import yaml from "js-yaml";
 import { Trans } from "@lingui/macro";
 import { I18nProvider, I18n } from "@lingui/react";
@@ -124,10 +124,16 @@ const App = () => {
                 </Box>
               </AppBar>
 
-              <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
+              <Box
+                justify="center"
+                align="center"
+                direction="column"
+                flex
+                overflow={{ horizontal: "hidden" }}
+              >
                 <Box flex align="center" justify="center" pad="5%">
                   {person && (
-                    <img
+                    <Image
                       width="100%"
                       src={`https://digital.canada.ca${person["image-name"]}`}
                       alt={person.name}
