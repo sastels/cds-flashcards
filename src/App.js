@@ -140,13 +140,8 @@ const App = () => {
                     />
                   )}
                 </Box>
-                <Box
-                  height="100px"
-                  elevation="small"
-                  align="center"
-                  justify="center"
-                >
-                  {showSidebar && person && (
+                {showSidebar && person && (
+                  <Box height="100px" align="center" justify="center">
                     <React.Fragment>
                       <Text size="xlarge">{person.name}</Text>
                       <Text size="large">
@@ -155,8 +150,8 @@ const App = () => {
                           : person.title.en}
                       </Text>
                     </React.Fragment>
-                  )}
-                </Box>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Grommet>
