@@ -125,9 +125,10 @@ const App = () => {
               </AppBar>
 
               <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
-                <Box flex align="center" justify="center" pad="large">
+                <Box flex align="center" justify="center" pad="5%">
                   {person && (
                     <img
+                      width="100%"
                       src={`https://digital.canada.ca${person["image-name"]}`}
                       alt={person.name}
                     />
