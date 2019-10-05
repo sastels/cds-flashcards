@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
-    "compile": "lingui compile"
+    "compile": "lingui compile",
+    "firebase-deploy": "npm run build && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
