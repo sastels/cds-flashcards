@@ -81,7 +81,7 @@ const App = () => {
     <I18nProvider language={lang} catalogs={{ en: catalogEn, fr: catalogFr }}>
       <I18n>
         {({ i18n }) => (
-          <Grommet theme={theme} full>
+          <Grommet theme={theme}>
             <Box fill>
               <AppBar>
                 <Box width="10%">
@@ -112,7 +112,11 @@ const App = () => {
                 <Box width="10%" direction="row" justify="end">
                   <Button
                     plain
-                    label={i18n._("other-lang")}
+                    label={
+                      <Text size="medium">
+                        <Trans>other-lang</Trans>
+                      </Text>
+                    }
                     onClick={() => {
                       setLang(i18n._("other-lang"));
                     }}
@@ -121,7 +125,7 @@ const App = () => {
               </AppBar>
 
               <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
-                <Box flex align="center" justify="center">
+                <Box flex align="center" justify="center" pad="large">
                   {person && (
                     <img
                       src={`https://digital.canada.ca${person["image-name"]}`}
@@ -130,8 +134,7 @@ const App = () => {
                   )}
                 </Box>
                 <Box
-                  height="20%"
-                  background="light-2"
+                  height="100px"
                   elevation="small"
                   align="center"
                   justify="center"
