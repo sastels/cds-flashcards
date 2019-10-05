@@ -51,7 +51,7 @@ function shuffle(array) {
 }
 
 const App = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showName, setShowName] = useState(false);
   const [teamData, setTeamData] = useState(undefined);
   const [teamDataIndex, setTeamDataIndex] = useState(0);
   const [lang, setLang] = useState("en");
@@ -93,13 +93,13 @@ const App = () => {
                 <Box direction="row" width="60%" justify="between">
                   <Button
                     label={i18n._("Reveal")}
-                    onClick={() => setShowSidebar(!showSidebar)}
+                    onClick={() => setShowName(!showName)}
                   />
                   <Button
                     label={i18n._("Next")}
                     reverse
                     onClick={() => {
-                      setShowSidebar(false);
+                      setShowName(false);
                       if (teamData && teamDataIndex < teamData.length - 1) {
                         setTeamDataIndex(teamDataIndex + 1);
                       } else {
@@ -131,7 +131,12 @@ const App = () => {
                 flex
                 overflow={{ horizontal: "hidden" }}
               >
-                <Box flex align="center" justify="center" pad="5%">
+                <Box
+                  flex
+                  align="center"
+                  justify="center"
+                  pad={{ horizontal: "5%", top: "5%", bottom: "2%" }}
+                >
                   {person && (
                     <Image
                       width="100%"
@@ -140,7 +145,7 @@ const App = () => {
                     />
                   )}
                 </Box>
-                {showSidebar && person && (
+                {showName && person && (
                   <Box height="100px" align="center" justify="center">
                     <React.Fragment>
                       <Text size="xlarge">{person.name}</Text>
