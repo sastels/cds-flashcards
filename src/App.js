@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Heading, Grommet, Text } from "grommet";
+import { Box, Button, Grommet, Heading, Image, Text } from "grommet";
 import yaml from "js-yaml";
 import { Trans } from "@lingui/macro";
 import { I18nProvider, I18n } from "@lingui/react";
@@ -51,7 +51,7 @@ function shuffle(array) {
 }
 
 const App = () => {
-  const [showSidebar, setShowSidebar] = useState(false);
+  const [showName, setShowName] = useState(false);
   const [teamData, setTeamData] = useState(undefined);
   const [teamDataIndex, setTeamDataIndex] = useState(0);
   const [lang, setLang] = useState("en");
@@ -81,7 +81,7 @@ const App = () => {
     <I18nProvider language={lang} catalogs={{ en: catalogEn, fr: catalogFr }}>
       <I18n>
         {({ i18n }) => (
-          <Grommet theme={theme} full>
+          <Grommet theme={theme}>
             <Box fill>
               <AppBar>
                 <Box width="10%">
@@ -93,13 +93,13 @@ const App = () => {
                 <Box direction="row" width="60%" justify="between">
                   <Button
                     label={i18n._("Reveal")}
-                    onClick={() => setShowSidebar(!showSidebar)}
+                    onClick={() => setShowName(!showName)}
                   />
                   <Button
                     label={i18n._("Next")}
                     reverse
                     onClick={() => {
-                      setShowSidebar(false);
+                      setShowName(false);
                       if (teamData && teamDataIndex < teamData.length - 1) {
                         setTeamDataIndex(teamDataIndex + 1);
                       } else {
@@ -112,7 +112,11 @@ const App = () => {
                 <Box width="10%" direction="row" justify="end">
                   <Button
                     plain
-                    label={i18n._("other-lang")}
+                    label={
+                      <Text size="medium">
+                        <Trans>other-lang</Trans>
+                      </Text>
+                    }
                     onClick={() => {
                       setLang(i18n._("other-lang"));
                     }}
@@ -120,23 +124,29 @@ const App = () => {
                 </Box>
               </AppBar>
 
-              <Box direction="column" flex overflow={{ horizontal: "hidden" }}>
-                <Box flex align="center" justify="center">
+              <Box
+                justify="center"
+                align="center"
+                direction="column"
+                flex
+                overflow={{ horizontal: "hidden" }}
+              >
+                <Box
+                  flex
+                  align="center"
+                  justify="center"
+                  pad={{ horizontal: "5%", top: "5%", bottom: "2%" }}
+                >
                   {person && (
-                    <img
+                    <Image
+                      width="100%"
                       src={`https://digital.canada.ca${person["image-name"]}`}
                       alt={person.name}
                     />
                   )}
                 </Box>
-                <Box
-                  height="20%"
-                  background="light-2"
-                  elevation="small"
-                  align="center"
-                  justify="center"
-                >
-                  {showSidebar && person && (
+                {showName && person && (
+                  <Box height="100px" align="center" justify="center">
                     <React.Fragment>
                       <Text size="xlarge">{person.name}</Text>
                       <Text size="large">
@@ -145,8 +155,8 @@ const App = () => {
                           : person.title.en}
                       </Text>
                     </React.Fragment>
-                  )}
-                </Box>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Grommet>
