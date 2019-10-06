@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { Box, Button, Grommet, Heading, Image, Text } from "grommet";
 import yaml from "js-yaml";
 import { Trans } from "@lingui/macro";
@@ -29,6 +30,10 @@ const AppBar = props => (
     {...props}
   />
 );
+
+const ButtonBox = styled(Box)`
+  max-width: 400px;
+`;
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array#2450976
 function shuffle(array) {
@@ -90,7 +95,7 @@ const App = () => {
                   </Heading>
                 </Box>
 
-                <Box direction="row" width="60%" justify="between">
+                <ButtonBox width="60%" direction="row" justify="between">
                   <Button
                     label={i18n._("Reveal")}
                     onClick={() => setShowName(!showName)}
@@ -107,7 +112,7 @@ const App = () => {
                       }
                     }}
                   />
-                </Box>
+                </ButtonBox>
 
                 <Box width="10%" direction="row" justify="end">
                   <Button
